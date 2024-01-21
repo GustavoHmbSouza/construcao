@@ -1,0 +1,149 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Rocketseat Documentação",
+        "description": "Api do curso da rocketseat",
+        "version": "1.0.0",
+        "contact": {
+            "email": "gustavo.hmbsouza@gmail.com"
+        }
+    },
+    "paths": {
+        "/categorias": {
+            "post": {
+                "tags": [
+                    "Categoria"
+                ],
+                "summary": "Cria categoria",
+                "description": "Cria uma nova categoria",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "nome": {
+                                        "type": "string"
+                                    },
+                                    "descricao": {
+                                        "type": "string"
+                                    }
+                                },
+                                "example": {
+                                    "nome": "Categoria nome exemplo",
+                                    "descricao": "Categoria descrição exemplo"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Criado"
+                    },
+                    "500": {
+                        "description": "Categoria já existe "
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Categoria"
+                ],
+                "summary": "Lista todas as categorias",
+                "description": "Lista todas as categorias",
+                "responses": {
+                    "200": {
+                        "description": "Sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "nome": {
+                                                "type": "string"
+                                            },
+                                            "descricao": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/categorias/import": {
+            "post": {
+                "tags": [
+                    "Categoria"
+                ],
+                "summary": "Upload de categorias",
+                "description": "Upload de categorias",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "file": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    }
+                }
+            }
+        },
+        "/especificacoes": {
+            "post": {
+                "tags": [
+                    "Especificacoes"
+                ],
+                "summary": "Cria Especificação",
+                "description": "Cria uma nova Especificacao",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/Especificacao"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "500": {
+                        "description": "Especificacao já existe"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Especificacao": {
+            "type": "object",
+            "properties": {
+                "nome": {
+                    "type": "string"
+                },
+                "descricao": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
